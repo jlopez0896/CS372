@@ -17,6 +17,7 @@
 //        Parameters: randArray - reference array for random integer keys
 //                    linearHash - int pointer for linear hash order of keys
 //                    doubleHash - int pointer array for double hash order of keys
+//                    listSize  - integer size of hash tables for each array
 //                    
 //  OUTPUT:
 //        Parameters: linearHash - reference return of dynamic initialized linear hash
