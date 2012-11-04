@@ -60,7 +60,7 @@
 //  FUNCTION: GenerateNumber
 //  DESCRIPTION: uses cstdlib rand() and the limits of MIN_RAND and MAX_RAND to
 //               generate a random integer and return it to the calling function
-//  IMPLEMENTED BY: Scott Russell
+//  IMPLEMENTED BY: Jason Lopez
 //  INPUT:
 //        Parameters: None
 //  OUTPUT:
@@ -132,7 +132,7 @@
 //  FUNCTION: GetPrimryHashLocation
 //  DESCRIPTION: function uses modulo-division to determine the initial location
 //               for a key
-//  IMPLEMENTED BY: Scott Russell
+//  IMPLEMENTED BY: Jason Lopez
 //  INPUT:
 //        Parameters: key - integer to be added to a hash table
 //                    listSize - integer size of the hash table
@@ -162,10 +162,9 @@
 //  DESCRIPTION: function initializes a node for adding to the chaining hash
 //  IMPLEMENTED BY: Scott Russell
 //  INPUT:
-//        Parameters: chainingNode - node for key integers that had a collision
-//                    with primary hash position
+//        Parameters: key - integer to populate node with
 //  OUTPUT:
-//        Return Val: None
+//        Return Val: chainingNode
 //  CALLS TO: None
 //***************************************************************************
 
@@ -239,3 +238,4 @@
 //        Return Val: None
 //  CALLS TO: None
 //***************************************************************************
+
