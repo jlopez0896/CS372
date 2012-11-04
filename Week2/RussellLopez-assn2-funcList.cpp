@@ -10,18 +10,17 @@
 
 
 //***************************************************************************
-//  FUNCTION: InitializeArrays
+//  FUNCTION: InitializeOpenHashArrays
 //  DESCRIPTION: function initializes all dynamic arrays needed for the program
 //  IMPLEMENTED BY: Scott Russell
 //  INPUT:
 //        Parameters: randArray - reference array for random integer keys
-//                    linearHash - int pointer for linear hash order of keys
-//                    doubleHash - int pointer array for double hash order of keys
+//                    linearHash - int pointer to be initialized dynamic hash table array
+//                    doubleHash - int pointer to be initialized to dynamic hash table array
 //                    listSize  - integer size of hash tables for each array
 //                    
 //  OUTPUT:
-//        Parameters: linearHash - reference return of dynamic initialized linear hash
-//                    doubleHash - reference return of dynamic initialized linear hash
+//        Return Val: arrayHash - initialized dynamic int array of listSize
 //  CALLS TO: None
 //***************************************************************************
 
