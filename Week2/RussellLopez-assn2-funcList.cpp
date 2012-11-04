@@ -18,7 +18,7 @@
 //                    linearHash - int pointer to be initialized dynamic hash table array
 //                    doubleHash - int pointer to be initialized to dynamic hash table array
 //                    listSize  - integer size of hash tables for each array
-//                    
+//
 //  OUTPUT:
 //        Return Val: arrayHash - initialized dynamic int array of listSize
 //  CALLS TO: None
@@ -74,7 +74,7 @@
 //  INPUT:
 //        Parameters: None
 //  OUTPUT:
-//        Return Val: random integer
+//        Return Val: randInt - random generated integer
 //  CALLS TO: None
 //***************************************************************************
 
@@ -144,6 +144,7 @@
 //        Parameters: listSize - integer size of hash table
 //  OUTPUT:
 //        Return Val: chainingHash - array of pointers [listSize] large
+//  CALLS TO: None
 //******************************************************************************
 
 
