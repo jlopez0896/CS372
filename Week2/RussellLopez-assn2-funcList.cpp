@@ -17,10 +17,10 @@
 //        Parameters: randArray - reference array for random integer keys
 //                    linearHash - reference array for linear hash order of keys
 //                    doubleHash - reference array for double hash order of keys
-//                    chainingHash - reference array for separate chaining hash
-//                                   order of keys
+//                    
 //  OUTPUT:
-//        Return Val: None
+//        Parameters: linearHash - reference return of initialized linear hash
+//                    doubleHash - reference return of initialized linear hash
 //  CALLS TO: None
 //***************************************************************************
 
@@ -33,7 +33,17 @@
 //        Parameters: randArray - reference array for random integer keys
 //                    linearHash - reference array for linear hash order of keys
 //                    doubleHash - reference array for double hash order of keys
-//                    chainingHash - reference array for separate chaining hash
+//  OUTPUT:
+//        Return Val: None
+//  CALLS TO: None
+//***************************************************************************
+
+//***************************************************************************
+//  FUNCTION: DeleteNodes
+//  DESCRIPTION: function will delete chaining nodes to free up memory
+//  IMPLEMENTED BY: Scott Russell
+//  INPUT:
+//        Parameters: chainingHash - reference array for separate chaining hash
 //                                   order of keys
 //  OUTPUT:
 //        Return Val: None
@@ -147,7 +157,7 @@
 //                    chainingHash - reference array for separate chaining hash
 //                                   order of keys
 //  OUTPUT:
-//        Return Val: None
+//        Parameteres: chainingHash - pointer returned with new values
 //  CALLS TO: GetPrimaryHashLocation, InitializeNode
 //***************************************************************************
 
@@ -251,15 +261,5 @@
 //***************************************************************************
 
 
-//***************************************************************************
-//  FUNCTION: DeleteNodes
-//  DESCRIPTION: function will delete chaining nodes to free up memory
-//  IMPLEMENTED BY: Scott Russell
-//  INPUT:
-//        Parameters: chainingHash - reference array for separate chaining hash
-//                                   order of keys
-//  OUTPUT:
-//        Return Val: None
-//  CALLS TO: None
-//***************************************************************************
+
 
