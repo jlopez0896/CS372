@@ -51,7 +51,7 @@
 //        Parameters: randArray - reference array to contain all random numbers
 //                    to be used as the key values for the program
 //  OUTPUT:
-//        Return Val: None
+//        Parameters: randArray - reference return of populated array
 //  CALLS TO: GenerateNumber, SearchArray
 //***************************************************************************
 
@@ -88,7 +88,7 @@
 //***************************************************************************
 //  FUNCTION: GetHashSize
 //  DESCRIPTION: function will prompt user for the size of the hash tables to create
-//  IMPLEMENTED BY:
+//  IMPLEMENTED BY: Scott Russell
 //  INPUT:
 //        Parameters: None
 //  OUTPUT:
@@ -123,6 +123,18 @@
 //        Return Val: None
 //  CALLS TO: GetPrimaryHashLocation, GetSecondaryHashLocation
 //***************************************************************************
+
+//*****************************************************************************
+//  FUNCTION:    CreateChainingHash
+//  DESCRIPTION: function creates array of pointers to nodes. Array is of listSize
+//               and every index of array is initialized to NULL.
+//               (To be used as master array in Separate Chaining method)
+//  IMPLEMENTED BY: Scott Russell
+//  INPUT:
+//        Parameters: listSize - integer size of hash table
+//  OUTPUT:
+//        Return Val: chainingHash - array of pointers [listSize] large
+//******************************************************************************
 
 
 //***************************************************************************
@@ -176,7 +188,7 @@
 //  INPUT:
 //        Parameters: key - integer to populate node with
 //  OUTPUT:
-//        Return Val: chainingNode
+//        Return Val: newNode
 //  CALLS TO: None
 //***************************************************************************
 
