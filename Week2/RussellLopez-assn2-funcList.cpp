@@ -12,15 +12,15 @@
 //***************************************************************************
 //  FUNCTION: InitializeArrays
 //  DESCRIPTION: function initializes all dynamic arrays needed for the program
-//  IMPLEMENTED BY:
+//  IMPLEMENTED BY: Scott Russell
 //  INPUT:
 //        Parameters: randArray - reference array for random integer keys
-//                    linearHash - reference array for linear hash order of keys
-//                    doubleHash - reference array for double hash order of keys
+//                    linearHash - int pointer for linear hash order of keys
+//                    doubleHash - int pointer array for double hash order of keys
 //                    
 //  OUTPUT:
-//        Parameters: linearHash - reference return of initialized linear hash
-//                    doubleHash - reference return of initialized linear hash
+//        Parameters: linearHash - reference return of dynamic initialized linear hash
+//                    doubleHash - reference return of dynamic initialized linear hash
 //  CALLS TO: None
 //***************************************************************************
 
@@ -28,7 +28,7 @@
 //***************************************************************************
 //  FUNCTION: DeleteArrays
 //  DESCRIPTION: function delets all dynamic arrays to free memory
-//  IMPLEMENTED BY:
+//  IMPLEMENTED BY: Jason Lopez
 //  INPUT:
 //        Parameters: randArray - reference array for random integer keys
 //                    linearHash - reference array for linear hash order of keys
@@ -249,7 +249,7 @@
 //***************************************************************************
 //  FUNCTION: OutputResults
 //  DESCRIPTION: function will display search results for the user
-//  IMPLEMENTED BY:
+//  IMPLEMENTED BY: Jason Lopez
 //  INPUT:
 //        Parameters: searchType - type of search executed (linear, double, or
 //                    chaining)
