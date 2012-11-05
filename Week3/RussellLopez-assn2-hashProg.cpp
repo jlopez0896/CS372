@@ -87,6 +87,8 @@ void PopulateLinearHash(int randArray[], int linearHash[]);
 
 void PopulateDoubleHash(int randArray[], int doubleHash[]);
 
+chainingHash** CreateChainingHash(int listSize);
+
 void PopulateChainingHash(int randArray, int chainingHash[]);
 
 int GetPrimaryHashLocation(int key, int listSize);
