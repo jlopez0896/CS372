@@ -14,5 +14,11 @@
 
 int GetSecondaryHashLocation(int key, int listSize)
 {
+    //Define Variables
+    int returnValue = 0;
 
+    returnValue = (key % (listSize - 2)) + 1;
+
+    return returnValue;
 }
+
