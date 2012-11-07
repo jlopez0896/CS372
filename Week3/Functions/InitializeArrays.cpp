@@ -33,7 +33,7 @@ void InitializeHashArrays (int* &linearHash, int* &doubleHash, int &listSize)
         for(int i = 0; i < listSize; i++)
         {
             linearHash[i] = 0;
-            doubleHash[1] = 0;
+            doubleHash[i] = 0;
         }
 
     }
