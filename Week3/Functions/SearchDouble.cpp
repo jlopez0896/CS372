@@ -22,7 +22,7 @@ int SearchDouble(const int randArray[], int* &doubleHash, int listSize, bool &ov
 
 	overflowHashError = false;
 
-	for(int i = 0; i < listSize; i += 2){
+	for(int i = 0; i < ARRAY_SIZE; i += 2){
 		//Get the initial hash location for the search
 		hashPosition = GetPrimaryHashLocation(randArray[i], listSize);
 

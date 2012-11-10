@@ -21,7 +21,7 @@ int SearchLinear(int randArray[], int* &linearHash, int listSize)
 	int hashPosition = 0;
 	bool searchItemFound = false;
 
-	for(int i = 0; i < listSize; i += 2){
+	for(int i = 0; i < ARRAY_SIZE; i += 2){
 		//Get the initial hash location for the search
 		hashPosition = GetPrimaryHashLocation(randArray[i], listSize);
 
@@ -47,4 +47,5 @@ int SearchLinear(int randArray[], int* &linearHash, int listSize)
 	}
 
 	returnValue = linearCounter;
+	return returnValue;
 }
