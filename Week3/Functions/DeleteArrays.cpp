@@ -6,15 +6,15 @@
 //        Parameters: randArray - reference array for random integer keys
 //                    linearHash - reference array for linear hash order of keys
 //                    doubleHash - reference array for double hash order of keys
-//                    chainingHash - reference array for separate chaining hash
-//                                   order of keys
 //  OUTPUT:
 //        Return Val: None
 //  CALLS TO: None
 //***************************************************************************
 
-void DeleteArrays(int randArray[], int linearHash[], int doubleHash[],
-                  int chainingHash[])
+void DeleteArrays(int *randArray, int *linearHash, int *doubleHash)
 {
-
+	//Delete the dynamic arrays
+	delete[] randArray;
+	delete[] linearHash;
+	delete[] doubleHash;
 }
