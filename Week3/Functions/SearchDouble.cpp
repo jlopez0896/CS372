@@ -8,63 +8,62 @@
 //                    doubleHash - reference array for double hash order of keys
 //  OUTPUT:
 //        Return Val: None
-//  CALLS TO: GetPrimaryHashLocation, GetSecondaryHashLocation, OutputResults
+//  CALLS TO: GetPrimaryHashLocation, GetSecondaryHashLocation
 //***************************************************************************
-
-int SearchDouble(const int randArray[], int* &doubleHash, int listSize, bool &overflowHashError)
+int SearchDouble(const int randArray[], int doubleHash[], int listSize, bool &overflowHashError)
 {
     //Define Variables
-	int returnValue = 0;
+    int randCounter = 0;
 	int doubleCounter = 0;
 	int hashPosition = 0;
-	int hashIncrement = 0;
-	bool searchItemFound = false;
+	int secondHashInterval = 0;
+	int overflowCounter = 0;
+	bool searchItemFound = false;  //calls to doubleHash stop when found
+	overflowHashError = false; //calls to doubleHash stop when hash size limit reached
 
-	overflowHashError = false;
 
-	for(int i = 0; i < ARRAY_SIZE; i += 2){
-		//Get the initial hash location for the search
-		hashPosition = GetPrimaryHashLocation(randArray[i], listSize);
+	while(randCounter < ARRAY_SIZE && !overflowHashError){
+        //Get hash position
+        hashPosition = GetPrimaryHashLocation(randArray[randCounter], listSize);
+        //if position is open: put in array number
+        if(doubleHash[hashPosition] == randArray[randCounter])
+            doubleCounter++;
+        //otherwise continue to search for a secondary position until: 1. open found, 2. overflow detected
 
-		//Compare values
-		if(randArray[i] == doubleHash[hashPosition]){
-			doubleCounter++;
-		}
-		else{
-		    //Call second hash position
-		    hashIncrement = GetSecondaryHashLocation(randArray[i], listSize);
+        else{
 
-		    hashPosition += hashIncrement;
+            while(!searchItemFound && !overflowHashError)
+            {
+                //Get the second hash position
+                secondHashInterval = GetSecondaryHashLocation(randArray[randCounter], listSize);
+                hashPosition += secondHashInterval;
+                doubleCounter++;
 
-		    if(randArray[i] == doubleHash[hashPosition]){
-		        doubleCounter++;
-		    }
-		    else{
-                //Loop until the value is found
-                do{
-                    if(doubleCounter < ARRAY_SIZE)
-                    {
-                        doubleCounter++;
-                        hashPosition += hashIncrement;
-                        if(randArray[i] == doubleHash[hashPosition]){
-                            doubleCounter++;
-                            searchItemFound = true;
-                        }
-                    }
-                    else{
-                        overflowHashError = true;
+                if(doubleHash[hashPosition] == randArray[randCounter]){ //if unfilled: put in key
+                    searchItemFound = true;
+                }
+                else if(hashPosition > listSize){
+                    //We have reached the end of the list.  Set hashPosition
+                    //back to the beginning of the list while maintaining the
+                    //hash interval
+                    hashPosition = hashPosition - listSize;
+                    doubleCounter++;
+                    if(doubleHash[hashPosition] == randArray[randCounter]){
+                        searchItemFound = true;
                     }
                 }
-                while(!searchItemFound || !overflowHashError);
+                else if(overflowCounter > listSize){
+                    overflowHashError = true;
+                } // end if overflow
 
-		    }
+                overflowCounter ++;
+            }
+            //Reset overflow counter and search item found bool
+            overflowCounter = 0;
+            searchItemFound = false;
+        }
 
-		}
-
-		//Reset hash position
-		hashPosition = 0;
-	}
-
-	returnValue = doubleCounter;
-	return returnValue;
+        randCounter+=2;
+    } // end For: length of hash
+	return doubleCounter;
 }

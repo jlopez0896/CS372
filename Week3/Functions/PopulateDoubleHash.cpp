@@ -13,14 +13,13 @@
 //        Return Val: None
 //  CALLS TO: GetPrimaryHashLocation, GetSecondaryHashLocation
 //***************************************************************************
-
-
-void PopulateDoubleHash(const int randArray[], int* &doubleHash, int listSize,
-                        bool overflowHashError)
+void PopulateDoubleHash(const int randArray[], int doubleHash[], int listSize,
+                        bool &overflowHashError)
 {
     //Declare Variables
     int randCounter = 0;
     int hashPosition = 0;
+    int secondHashPosition = 0;
     int secondHashInterval = 0;
     bool endHashProcessing = false;
     int overflowCounter = 0;
@@ -29,50 +28,49 @@ void PopulateDoubleHash(const int randArray[], int* &doubleHash, int listSize,
     overflowHashError = false;
 
     //Loop through random array and input values into linear hash table
-    for(randCounter = 0; randCounter < ARRAY_SIZE; randCounter++)
-    {
+    while(randCounter < ARRAY_SIZE && !overflowHashError){
         //Get hash position
         hashPosition = GetPrimaryHashLocation(randArray[randCounter], listSize);
-
-        if(doubleHash[hashPosition] == 0)
-        {
+        //if position is open: put in array number
+        if(doubleHash[hashPosition] == NULL)
             doubleHash[hashPosition] = randArray[randCounter];
-        }
-        else
-        {
-            //Get the second hash position
-            hashPosition = GetSecondaryHashLocation(randArray[randCounter], listSize);
-            secondHashInterval = hashPosition;
+        //otherwise continue to search for a secondary position until: 1. open found, 2. overflow detected
+        else{
 
-            if(doubleHash[hashPosition] == 0)
+            while(!endHashProcessing && !overflowHashError)
             {
-                doubleHash[hashPosition] = randArray[randCounter];
-            }
-            else
-            {
-                //Continue to add the second hash interval to the position until
-                //a free location is found
-                while(!endHashProcessing)
-                {
-                    //Increment hash position
-                    hashPosition += secondHashInterval;
-                    if(doubleHash[hashPosition] == 0)
-                    {
+                //Get the second hash position
+                secondHashInterval = GetSecondaryHashLocation(randArray[randCounter], listSize);
+                hashPosition += secondHashInterval;
+
+                if(doubleHash[hashPosition] == NULL){ //if unfilled: put in key
+                    doubleHash[hashPosition] = randArray[randCounter];
+                    endHashProcessing = true;
+                }
+                else if(hashPosition > listSize){
+                    //We have reached the end of the list.  Set hashPosition
+                    //back to the beginning of the list while maintaining the
+                    //hash interval
+                    hashPosition = hashPosition - listSize;
+                    if(doubleHash[hashPosition] == NULL){
                         doubleHash[hashPosition] = randArray[randCounter];
                         endHashProcessing = true;
                     }
-                    if(overflowCounter == listSize)
-                    {
-                        endHashProcessing = true;
-                        overflowHashError = true;
-                    }
-                    overflowCounter ++;
                 }
+                else if(overflowCounter > listSize){
+                    endHashProcessing = true;
+                    overflowHashError = true;
+                } // end if overflow
+
+                overflowCounter ++;
             }
-
+            //Reset overflow counter and end hash processing bool
+            overflowCounter = 0;
+            endHashProcessing = false;
         }
+        //Increase counter to the next item
+        randCounter++;
 
-        //Reset hash position
-        hashPosition = 0;
-    }
-}
+    } // end While: length of hash
+
+} // end PopulateDoubleHash

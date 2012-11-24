@@ -12,13 +12,12 @@
 //                              search
 //  CALLS TO: GetPrimaryHashLocation, OutputResults
 //***************************************************************************
-
-int SearchLinear(int randArray[], int* &linearHash, int listSize)
+int SearchLinear(const int randArray[], int linearHash[], int listSize)
 {
 	//Define Variables
-	int returnValue = 0;
-	int linearCounter = 0;
-	int hashPosition = 0;
+	//int returnValue = 0;
+	int linearCounter = 0;  //count of locations checked in hash before key located
+	int hashPosition = 0;   //assumed position of key within linearHash array
 	bool searchItemFound = false;
 
 	for(int i = 0; i < ARRAY_SIZE; i += 2){
@@ -26,26 +25,27 @@ int SearchLinear(int randArray[], int* &linearHash, int listSize)
 		hashPosition = GetPrimaryHashLocation(randArray[i], listSize);
 
 		//Compare values
-		if(randArray[i] == linearHash[hashPosition]){
+		if(randArray[i] == linearHash[hashPosition])
 			linearCounter++;
-		}
+
+		//values not matched
 		else{
 			//Loop until the value is found
 			do{
+			    //move to next value in array and maintain searched location counts
 			    linearCounter++;
 			    hashPosition++;
 			    if(randArray[i] == linearHash[hashPosition]){
 			        linearCounter++;
 			        searchItemFound = true;
-			    }
-			}
-			while(!searchItemFound);
-		}
+			    } // end if: hash key found
+			} while(!searchItemFound);
+		} // end else: hash key not found at first location
 
 		//Reset hash position
 		hashPosition = 0;
-	}
+	} // end for: traverse array (increments of 2)
 
-	returnValue = linearCounter;
-	return returnValue;
+	//returnValue = linearCounter;
+	return linearCounter;
 }
